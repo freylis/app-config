@@ -7,11 +7,11 @@ from .exceptions import BadValueError
 
 
 config = configparser.ConfigParser()
-path = os.path.join(
+config_path = os.path.join(
     os.path.dirname(os.path.abspath(sys.argv[0])),
     'appconfig.ini',
 )
-config.read(path)
+config.read(config_path)
 
 
 bool_true_values = {
@@ -36,7 +36,7 @@ def get_value(section, param, lazy=True):
     except (configparser.NoOptionError, configparser.NoSectionError):
         if lazy:
             return None
-        raise BadValueError('Bad value for %r.%r' % (section, param))
+        raise BadValueError('Bad value for %r.%r in file %r' % (section, param, config_path))
 
 
 def get_str(section, param, lazy=True):
