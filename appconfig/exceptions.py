@@ -6,3 +6,7 @@ class AppConfigError(Exception):
 
 class BadValueError(AppConfigError):
     pass
+
+
+class ParamsError(AppConfigError):
+    pass
